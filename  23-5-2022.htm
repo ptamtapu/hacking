@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" /> 
+<head>
+<style>
+
+.tabs{
+  overflow:hidden;
+  clear:both;
+ 
+}
+.tabs ul{
+  list-style-type:none;
+  bottom: -1px;
+  position:relative;
+}
+.tabs li{
+  float:left;
+}
+ 
+.tabs{
+    overflow: hidden;
+    clear: both;
+    width: 80%;
+    margin: auto;
+}
+.tabs ul{
+  list-style-type:none;
+  bottom: -1px;
+  position:relative;
+}
+.tabs li{
+  float:left;
+}
+ 
+.tabs a{
+  display:block;
+  padding:5px 10px;
+  background-color: #EEE;
+  color: #000;
+  text-decoration: none;
+  margin: 0 4px;
+  border-top:1px solid #CCC;
+  border-left:1px solid #DDD;
+  border-right:1px solid #DDD;
+  font:13px/18px verdana,arial,sans-serif;
+  border-bottom:1px solid #CCC;
+}
+.tabs a.active{
+  background-color: #fff;
+  border-bottom:1px solid #fff;
+}
+.tabs div{
+  clear: both;
+  border:1px solid #CCC;
+  padding:5px;
+  font-family:verdana;
+  font-size:13px;
+  background-color: #fff;
+  display:none;
+}
+
+table{
+    width: 100%;
+    margin: auto;
+    /*border-collapse:collapse;*/
+    /*border:1px solid #FF0000;*/
+    /*border-spacing: 20px 20px;*/
+    border-spacing: 0px 20px;
+}
+
+table td{
+    /*border:1px solid #FF0000;*/
+}
+
+table th{
+    /*border:1px solid #FF0000;*/
+    border-spacing: 0px;
+}
+
+tbody tr>td{
+    background-color:rgba(0, 0, 0, 0.05);
+}
+
+[data-label="foto"] {
+    width: 75px;
+    padding: 0 20px 0 20px;
+    height: 90px;
+    border-radius: 20px 0 0 20px;
+}
+
+[data-label="fecha"] {
+    border-radius: 0 20px 20px 0;
+}
+
+</style></head><body>
+<div class="tabs">
+				<ul>
+<li><a href="#tab0" class="active">DITETAPKAN</a></li>			</ul>
+<div id="tab0"><table></table></div>		</div>
+		
+		
+		
+
+<script >
+
+function makeTabs(selector) {
+ 
+    tab_lists_anchors = document.querySelectorAll(selector + " li a");
+    divs = document.querySelector(selector).getElementsByTagName("div");
+    for (var i = 0; i < tab_lists_anchors.length; i++) {
+        if (tab_lists_anchors[i].classList.contains('active')) {
+            divs[i].style.display = "block";
+        }
+ 
+    }
+ 
+    for (i = 0; i < tab_lists_anchors.length; i++) {
+ 
+        document.querySelectorAll(".tabs li a")[i].addEventListener('click', function(e) {
+ 
+            for (i = 0; i < divs.length; i++) {
+                divs[i].style.display = "none";
+            }
+ 
+            for (i = 0; i < tab_lists_anchors.length; i++) {
+                tab_lists_anchors[i].classList.remove("active");
+            }
+ 
+            clicked_tab = e.target || e.srcElement;
+ 
+            clicked_tab.classList.add('active');
+            div_to_show = clicked_tab.getAttribute('href');
+ 
+            document.querySelector(div_to_show).style.display = "block";
+ 
+        });
+    }
+ 
+}
+
+window.addEventListener("load", function() {
+    makeTabs(".tabs")
+});
+
+</script>
+</body></html>
